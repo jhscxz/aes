@@ -1,0 +1,43 @@
+﻿@using aes.Models.Racuni;
+@using aes.Models.Racuni.Elektra;
+
+@model RacunElektra
+
+
+<form asp-action="Create" class="row d-flex justify-content-center">
+    <div class="col-md-2">
+        <label hidden class="form-label col-form-label-sm">Broj Računa</label>
+        <input asp-for="BrojRacuna" id="brojRacuna" class="form-control form-control-sm" placeholder="broj računa" maxlength="21">
+        <span asp-validation-for="BrojRacuna" class="text-danger"></span>
+    </div>
+    <div class="col-md-2">
+        <label hidden class="form-label col-form-label-sm">Datum izdavanja</label>
+        <input type="text" id="datumIzdavanja" class="form-control form-control-sm" placeholder="@ViewBag.plch"
+               onfocus="(this.type='@ViewBag.inputType')" onblur="setDatumIzdavanjaTextIfEmpty()" @{
+               /*trik za pokazivanje placeholdera*/
+               }>
+    </div>
+    <div class="col-md-1">
+        <label hidden class="form-label col-form-label-sm">Iznos</label>
+        <input type="number" step="0.01" id="iznos" class="form-control form-control-sm"
+               placeholder="Iznos">
+    </div>
+    <div class="row">
+        <div class="form-group side-padding-10 align-self-center">
+            <input type="submit" value="Spremi" class="btn btn-dark" />
+        </div>
+    </div>
+</form>
+<div class="row justify-content-center">
+    <div class="col-sm-auto">
+        <label class="form-label col-form-label-sm" id="stanText"> </label>
+    </div>
+</div>
+<hr />
+<script>
+    function setDatumIzdavanjaTextIfEmpty() {
+        if (document.getElementById("datumIzdavanja").value == "") {
+            document.getElementById('datumIzdavanja').type = 'text';
+        }
+    }
+</script>
